@@ -7,5 +7,5 @@ header, nav, section { background: #eee; text-align: center; }
 footer { background: #eee; text-align: center; }
 nav span { margin: 0px 10px 0px 0px; }
 table { width: 100%; }
-table form { margin: 0 0 20px 0; }
+#buscador { margin: 0 0 20px 0; }
 #ErrorMsgs {color: #F61; font-size: smaller;}
