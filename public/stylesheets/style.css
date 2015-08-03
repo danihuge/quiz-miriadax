@@ -9,3 +9,4 @@ nav span { margin: 0px 10px 0px 0px; }
 table { width: 100%; }
 #buscador { margin: 0 0 20px 0; }
 #ErrorMsgs {color: #F61; font-size: smaller;}
+.right {float: right;}
