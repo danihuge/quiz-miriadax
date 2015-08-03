@@ -31,9 +31,30 @@ app.use(session({
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Controlamos el tiempo de inactividad
+app.use(function(req, res, next) {
+  if (req.session.user) {
+    var seconds = new Date().getTime() / 1000;
+    if (req.session.timeout) {
+      var diferencia = seconds - req.session.timeout;
+      if ((diferencia) > 10) {
+        delete req.session.user;
+        delete req.session.timeout;
+        return res.redirect("/login");
+      } else
+        req.session.timeout = seconds;
+        next();
+    } else {
+      req.session.timeout = seconds;
+      next();
+    }
+  }
+  else
+    next();
+});
+
 // Helpers dinamicos - middleware
 app.use(function(req, res, next) {
-
   // guardar path en session.redir para despues de login
   if (!req.path.match(/\/login|\/logout/)) {
     req.session.redir = req.path;
